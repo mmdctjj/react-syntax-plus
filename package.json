@@ -9,13 +9,22 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
   "contributes": {
-    "commands": [
+    "languages": [
       {
-        "command": "react-syntax-plus.helloWorld",
-        "title": "Hello World"
+        "id": "javascriptreact",
+        "extensions": [".jsx"],
+        "aliases": ["JavaScript React", "javascriptreact"]
+      },
+      {
+        "id": "typescriptreact",
+        "extensions": [".tsx"],
+        "aliases": ["TypeScript React", "typescriptreact"]
       }
     ]
   },
