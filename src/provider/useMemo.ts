@@ -13,7 +13,15 @@ import {
 export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
   ["javascriptreact", "typescriptreact"],
   {
-    provideCompletionItems(document: vscode.TextDocument) {
+    provideCompletionItems(
+      document: vscode.TextDocument,
+      position: vscode.Position
+    ) {
+      const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
+      // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
+      if (!linePrefix.endsWith("um")) {
+        return undefined;
+      }
       const text = document.getText();
 
       const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
@@ -24,7 +32,7 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
         `This useMemo hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nconst $1 = useMemo(() => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
       );
       completionItemUtil.setSnippetStringTemplate(
-        `const $1 = useMemo(() => {\n\tconsole.log("#{}", #{});\nreturn #{}$2\n}, [#{}]);$0`
+        `const $1 = useMemo(() => {\n\tconsole.log("#{}", #{});\n\treturn #{}$2\n}, [#{}]);$0`
       );
       return completionItemUtil.getCompletionItems(document, text);
     },

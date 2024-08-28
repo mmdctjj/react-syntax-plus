@@ -14,7 +14,15 @@ export const useCallbackProvider =
   vscode.languages.registerCompletionItemProvider(
     ["javascriptreact", "typescriptreact"],
     {
-      provideCompletionItems(document: vscode.TextDocument) {
+      provideCompletionItems(
+        document: vscode.TextDocument,
+        position: vscode.Position
+      ) {
+        const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
+        // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
+        if (!linePrefix.endsWith("uc")) {
+          return undefined;
+        }
         const text = document.getText();
 
         const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];

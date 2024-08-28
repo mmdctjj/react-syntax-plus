@@ -48,7 +48,7 @@ export class CompletionItemUtil {
 
         const completionItem = new vscode.CompletionItem(
           `${this.providerName} with ${variableName}`,
-          vscode.CompletionItemKind.Snippet
+          vscode.CompletionItemKind.Function
         );
 
         completionItem.detail = this.providerName;
