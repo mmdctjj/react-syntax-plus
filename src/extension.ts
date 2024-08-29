@@ -6,6 +6,8 @@ import {
   useEffectProvider,
   useLayoutEffectProvider,
   useMemoProvider,
+  useRefProvider,
+  useStateProvider,
 } from "./provider";
 import { importFunction } from "./utils/import";
 // This method is called when your extension is activated
@@ -20,6 +22,8 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(useEffectProvider);
   context.subscriptions.push(useLayoutEffectProvider);
   context.subscriptions.push(useMemoProvider);
+  context.subscriptions.push(useRefProvider);
+  context.subscriptions.push(useStateProvider);
 }
 
 vscode.commands.registerCommand("extension.addOrUpdateImport", importFunction);

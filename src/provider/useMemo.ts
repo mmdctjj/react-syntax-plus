@@ -22,7 +22,6 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
       if (!linePrefix.endsWith("um")) {
         return undefined;
       }
-      const text = document.getText();
 
       const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
 
@@ -34,8 +33,8 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
       completionItemUtil.setSnippetStringTemplate(
         `const $1 = useMemo(() => {\n\tconsole.log("#{}", #{});\n\treturn #{}$2\n}, [#{}]);$0`
       );
-      return completionItemUtil.getCompletionItems(document, text);
+      return completionItemUtil.getCompletionItems(document);
     },
   },
-  "um"
+  "m"
 );

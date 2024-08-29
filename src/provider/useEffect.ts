@@ -23,8 +23,6 @@ export const useEffectProvider =
           return undefined;
         }
 
-        const text = document.getText();
-
         const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
 
         const completionItemUtil = new CompletionItemUtil("useEffect");
@@ -35,8 +33,8 @@ export const useEffectProvider =
         completionItemUtil.setSnippetStringTemplate(
           `\nuseEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
         );
-        return completionItemUtil.getCompletionItems(document, text);
+        return completionItemUtil.getCompletionItems(document);
       },
     },
-    "ue" // Trigger for 'ue' prefix
+    "e" // Trigger for 'ue' prefix
   );

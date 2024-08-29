@@ -35,8 +35,8 @@ export const useLayoutEffectProvider =
         completionItemUtil.setSnippetStringTemplate(
           `\nuseLayoutEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
         );
-        return completionItemUtil.getCompletionItems(document, text);
+        return completionItemUtil.getCompletionItems(document);
       },
     },
-    "ul"
+    "l"
   );

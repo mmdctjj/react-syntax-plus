@@ -37,8 +37,29 @@ export class CompletionItemUtil {
       arguments: [document, [this.providerName]],
     };
   }
-  getCompletionItems(document: vscode.TextDocument, text: string) {
+  createCompletionItem(variableName: string) {
+    const completionItem = new vscode.CompletionItem(
+      `${this.providerName} with ${variableName}`,
+      vscode.CompletionItemKind.Function
+    );
+
+    completionItem.detail = this.providerName;
+
+    // insert code
+    completionItem.insertText = new vscode.SnippetString(
+      this.renderSnippetString(variableName)
+    );
+    // preview insert code
+    completionItem.documentation = new vscode.MarkdownString(
+      this.renderMarkdownString(variableName)
+    );
+    return completionItem;
+  }
+
+  getCompletionItems(document: vscode.TextDocument) {
     let match;
+
+    const text = document.getText();
 
     const completionItems: vscode.CompletionItem[] = [];
 
@@ -46,21 +67,7 @@ export class CompletionItemUtil {
       while ((match = regex.exec(text)) !== null) {
         const variableName = match[1];
 
-        const completionItem = new vscode.CompletionItem(
-          `${this.providerName} with ${variableName}`,
-          vscode.CompletionItemKind.Function
-        );
-
-        completionItem.detail = this.providerName;
-
-        // insert code
-        completionItem.insertText = new vscode.SnippetString(
-          this.renderSnippetString(variableName)
-        );
-        // preview insert code
-        completionItem.documentation = new vscode.MarkdownString(
-          this.renderMarkdownString(variableName)
-        );
+        const completionItem = this.createCompletionItem(variableName);
 
         // Command to modify the import statement
         this.excuteImportCommand(completionItem, document);

@@ -23,7 +23,6 @@ export const useCallbackProvider =
         if (!linePrefix.endsWith("uc")) {
           return undefined;
         }
-        const text = document.getText();
 
         const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
 
@@ -35,8 +34,8 @@ export const useCallbackProvider =
         completionItemUtil.setSnippetStringTemplate(
           `const $1 = useCallback(() => {\n\tconsole.log("#{}", #{});$2\n}, [#{}]);`
         );
-        return completionItemUtil.getCompletionItems(document, text);
+        return completionItemUtil.getCompletionItems(document);
       },
     },
-    "uc"
+    "c"
   );
