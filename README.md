@@ -2,7 +2,7 @@
 
 react-syntax-plus: This is a syntax snippets plugin for React designed to simplify and accelerate the development process.
 
-English | [简体中文]()
+English | [简体中文](https://juejin.cn/spost/7409185886300569641)
 
 ## Features
 
