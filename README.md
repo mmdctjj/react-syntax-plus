@@ -28,26 +28,22 @@ Additionally, it should be noted that the way to activate the corresponding meth
 
 The characters after 'uf' and 'us' will be used as corresponding variable names. Note that variables after' us' will be placed in an array, and the second variable in the array will be automatically named with a camel hump.
 
-![]("./images/useState.gif")
-
+![useState](https://github.com/mmdctjj/react-syntax-plus/blob/master/images/ustate.gif?raw=true)
 ### useMemo
 
 The characters after 'um' will be used to match the base variables starting with this. After inserting the code, you need to input the variables and then press the 'tab' key to quickly jump to the custom logic after the 'return' statement.
 
-![]("./images/useMemo.gif")
-
+![useMemo](https://github.com/mmdctjj/react-syntax-plus/blob/master/images/useMemo.gif?raw=true)
 ### useCallback
 
 The characters after 'uc' will be used to match base or derived variables that start with this, and variables need to be input after inserting the code.
 
-![]("./images/useCallback.gif")
-
+![useCallback](https://github.com/mmdctjj/react-syntax-plus/blob/master/images/useCallback.gif?raw=true)
 ### useEffect and useLayoutEffect
 
 The characters after 'ue' and 'ul' will be used to match base or derived variables starting with this, and then listen for their changes,
 
-![]("./images/useEffect.gif")
-
+![useEffect](https://github.com/mmdctjj/react-syntax-plus/blob/master/images/useEffect.gif?raw=true)
 ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.

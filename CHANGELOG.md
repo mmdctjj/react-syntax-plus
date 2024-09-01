@@ -1,9 +1,6 @@
 # Change Log
 
-All notable changes to the "react-syntax-plus" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### feat: 🚀 add useRef, useState
+### feat: 🚀 add useEffect, useLayoutEffect, useMemo, useCallback
 
 ## [Unreleased]
-
-- Initial release

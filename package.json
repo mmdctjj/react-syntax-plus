@@ -1,13 +1,24 @@
 {
   "name": "react-syntax-plus",
   "displayName": "react-syntax-plus",
-  "description": "react-syntax-plus",
+  "description": "This is a syntax snippets plugin for React designed to simplify and accelerate the development process.",
   "version": "0.0.1",
+  "publisher": "mmdctjj",
+  "icon": "images/logo.png",
+  "author": "mmdctjj",
+  "homepage": "https://github.com/mmdctjj/react-syntax-plus/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmdctjj/react-syntax-plus"
+  },
+  "bugs": {
+    "url": "https://github.com/mmdctjj/react-syntax-plus/issues"
+  },
   "engines": {
     "vscode": "^1.92.0"
   },
   "categories": [
-    "Other"
+    "Snippets"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
