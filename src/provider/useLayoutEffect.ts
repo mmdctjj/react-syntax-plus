@@ -19,7 +19,7 @@ export const useLayoutEffectProvider =
         position: vscode.Position
       ) {
         const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
-        // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
+        // Check if the linePrefix ends with 'ul' to trigger 'useLayoutEffect' suggestions
         if (!linePrefix.endsWith("ul")) {
           return undefined;
         }
@@ -33,7 +33,7 @@ export const useLayoutEffectProvider =
           `This useLayoutEffect hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nuseLayoutEffect(() => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
         );
         completionItemUtil.setSnippetStringTemplate(
-          `\nuseLayoutEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
+          `useLayoutEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
         );
         return completionItemUtil.getCompletionItems(document);
       },

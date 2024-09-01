@@ -1,16 +1,52 @@
 # react-syntax-plus README
 
-This is the README for your extension "react-syntax-plus". After writing up a brief description, we recommend including the following sections.
+react-syntax-plus: This is a syntax snippets plugin for React designed to simplify and accelerate the development process.
+
+English | [简体中文]()
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+There are two core functions of the plugin
 
-For example if there is an image subfolder under your extension project workspace:
+- Quickly create basic variables based on 'useState' and 'useRef'
+- Behavior derived from basic variables: useMemo, useVNet, useEffect, and useLayoutEffect`
 
-\!\[feature X\]\(images/feature-x.png\)
+When these methods are used, the corresponding method will be automatically introduced from the 'React' library (ignored if already introduced).
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Additionally, it should be noted that the way to activate the corresponding method is to enter the corresponding keyword in the text, followed by the corresponding character recognition area.
+
+| method            | keyword |
+| ----------------- | ------- |
+| `useRef`          | `uf`    |
+| `useState`        | `us`    |
+| `useMemo`         | `um`    |
+| `useCallback`     | `uc`    |
+| `useEffect`       | `ue`    |
+| `useLayoutEffect` | `ul`    |
+
+### useRef and useState
+
+The characters after 'uf' and 'us' will be used as corresponding variable names. Note that variables after' us' will be placed in an array, and the second variable in the array will be automatically named with a camel hump.
+
+![]("./images/useState.gif")
+
+### useMemo
+
+The characters after 'um' will be used to match the base variables starting with this. After inserting the code, you need to input the variables and then press the 'tab' key to quickly jump to the custom logic after the 'return' statement.
+
+![]("./images/useMemo.gif")
+
+### useCallback
+
+The characters after 'uc' will be used to match base or derived variables that start with this, and variables need to be input after inserting the code.
+
+![]("./images/useCallback.gif")
+
+### useEffect and useLayoutEffect
+
+The characters after 'ue' and 'ul' will be used to match base or derived variables starting with this, and then listen for their changes,
+
+![]("./images/useEffect.gif")
 
 ## Requirements
 
@@ -32,40 +68,5 @@ This extension contributes the following settings:
 Calling out known issues can help limit users opening duplicate issues against your extension.
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**

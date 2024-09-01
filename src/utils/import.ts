@@ -13,7 +13,7 @@ export const importFunction = (document: any, [importName]: string[]) => {
     // if importName not in imports
     if (!imports.includes(importName)) {
       imports.push(importName);
-      const newImport = `import { ${imports.join(", ")} } from 'react';`;
+      const newImport = `import { ${imports.join(", ")} } from 'react'`;
       const importPosition = document.positionAt(match.index);
       const importRange = new vscode.Range(
         importPosition,

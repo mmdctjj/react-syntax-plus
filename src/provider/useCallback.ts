@@ -19,7 +19,7 @@ export const useCallbackProvider =
         position: vscode.Position
       ) {
         const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
-        // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
+        // Check if the linePrefix ends with 'uc' to trigger 'useCallback' suggestions
         if (!linePrefix.endsWith("uc")) {
           return undefined;
         }

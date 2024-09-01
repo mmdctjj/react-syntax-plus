@@ -18,7 +18,7 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
       position: vscode.Position
     ) {
       const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
-      // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
+      // Check if the linePrefix ends with 'um' to trigger 'useMemo' suggestions
       if (!linePrefix.endsWith("um")) {
         return undefined;
       }

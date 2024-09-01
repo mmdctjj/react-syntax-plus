@@ -31,7 +31,7 @@ export const useEffectProvider =
           `\nThis useEffect hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nuseEffect(() => {\n  console.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
         );
         completionItemUtil.setSnippetStringTemplate(
-          `\nuseEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
+          `useEffect(() => {\n\tconsole.log("#{}", #{});\n}, [#{}]);`
         );
         return completionItemUtil.getCompletionItems(document);
       },
