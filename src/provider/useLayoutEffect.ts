@@ -2,13 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import {
-  CALLBACKREG,
-  MEMOREG,
-  REDUCERREG,
-  REFREG,
-  STATEREG,
-} from "../utils/constant";
+import { HOOKREG } from "../utils/constant";
 
 export const useLayoutEffectProvider =
   vscode.languages.registerCompletionItemProvider(
@@ -23,9 +17,8 @@ export const useLayoutEffectProvider =
         if (!linePrefix.endsWith("ul")) {
           return undefined;
         }
-        const text = document.getText();
 
-        const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
+        const regexs = [HOOKREG];
 
         const completionItemUtil = new CompletionItemUtil("useLayoutEffect");
         completionItemUtil.setRegexs(regexs);

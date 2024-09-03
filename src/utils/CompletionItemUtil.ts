@@ -65,14 +65,31 @@ export class CompletionItemUtil {
 
     this.regexs.map((regex) => {
       while ((match = regex.exec(text)) !== null) {
-        const variableName = match[1];
+        const variables = match[1];
 
-        const completionItem = this.createCompletionItem(variableName);
+        // Check if it's an object or array destructuring
+        if (variables.startsWith("{") || variables.startsWith("[")) {
+          // Remove braces or brackets, split by commas, and remove "..." from the start of any variable
+          const cleanedVariables = variables
+            .slice(1, -1)
+            .split(",")
+            .map((v) => v.trim().replace(/^\.{3}/, ""));
+          cleanedVariables.map((variable) => {
+            const completionItem = this.createCompletionItem(variable);
 
-        // Command to modify the import statement
-        this.excuteImportCommand(completionItem, document);
+            // Command to modify the import statement
+            this.excuteImportCommand(completionItem, document);
 
-        completionItems.push(completionItem);
+            completionItems.push(completionItem);
+          });
+        } else {
+          const completionItem = this.createCompletionItem(variables);
+
+          // Command to modify the import statement
+          this.excuteImportCommand(completionItem, document);
+
+          completionItems.push(completionItem);
+        }
       }
     });
 

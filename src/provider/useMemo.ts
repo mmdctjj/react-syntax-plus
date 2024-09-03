@@ -2,13 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import {
-  CALLBACKREG,
-  MEMOREG,
-  REDUCERREG,
-  REFREG,
-  STATEREG,
-} from "../utils/constant";
+import { HOOKREG } from "../utils/constant";
 
 export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
   ["javascriptreact", "typescriptreact"],
@@ -23,7 +17,7 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
         return undefined;
       }
 
-      const regexs = [STATEREG, MEMOREG, REFREG, CALLBACKREG, REDUCERREG];
+      const regexs = [HOOKREG];
 
       const completionItemUtil = new CompletionItemUtil("useMemo");
       completionItemUtil.setRegexs(regexs);

@@ -14,3 +14,7 @@ export const REFREG = /const\s+(\w+)\s*=\s*useRef\([\s\S]*?\);?/g;
 
 /** useCallback */
 export const CALLBACKREG = /const\s+(\w+)\s*=\s*useCallback\([\s\S]*?\);?/g;
+
+/** useXxx */
+export const HOOKREG =
+  /const\s+(\{[^}]*\}|\[[^\]]*\]|\w+)\s*=\s*use\w*\([^)]*\)/g;
