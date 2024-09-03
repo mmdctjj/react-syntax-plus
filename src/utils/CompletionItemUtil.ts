@@ -1,16 +1,19 @@
 import * as vscode from "vscode";
+import { PROPSREG } from "./constant";
 
 export class CompletionItemUtil {
   providerName: string;
   regexs: RegExp[];
   snippetStringTemplate: string;
   markdownStringTemplate: string;
+  document: vscode.TextDocument;
 
-  constructor(providerName: string) {
+  constructor(providerName: string, document: vscode.TextDocument) {
     this.providerName = providerName;
     this.regexs = [];
     this.snippetStringTemplate = "";
     this.markdownStringTemplate = "";
+    this.document = document;
   }
   setRegexs(regexs: RegExp[]) {
     this.regexs = regexs;
@@ -27,14 +30,11 @@ export class CompletionItemUtil {
   renderMarkdownString(variableName: string) {
     return this.markdownStringTemplate.replaceAll("#{}", variableName);
   }
-  excuteImportCommand(
-    completionItem: vscode.CompletionItem,
-    document: vscode.TextDocument
-  ) {
+  excuteImportCommand(completionItem: vscode.CompletionItem) {
     completionItem.command = {
       command: "extension.addOrUpdateImport",
       title: "Add or Update Import",
-      arguments: [document, [this.providerName]],
+      arguments: [this.document, [this.providerName]],
     };
   }
   createCompletionItem(variableName: string) {
@@ -53,6 +53,7 @@ export class CompletionItemUtil {
     completionItem.documentation = new vscode.MarkdownString(
       this.renderMarkdownString(variableName)
     );
+    this.excuteImportCommand(completionItem);
     return completionItem;
   }
 
@@ -67,26 +68,29 @@ export class CompletionItemUtil {
       while ((match = regex.exec(text)) !== null) {
         const variables = match[1];
 
+        if (regex === PROPSREG) {
+          if (typeof match[2] === "string") {
+            const completionItem = this.createCompletionItem(
+              match[2] === "" ? "props" : `props.${match[2]}`
+            );
+            completionItems.push(completionItem);
+          }
+        }
+
         // Check if it's an object or array destructuring
-        if (variables.startsWith("{") || variables.startsWith("[")) {
+        else if (variables.startsWith("{") || variables.startsWith("[")) {
           // Remove braces or brackets, split by commas, and remove "..." from the start of any variable
           const cleanedVariables = variables
             .slice(1, -1)
             .split(",")
             .map((v) => v.trim().replace(/^\.{3}/, ""));
-          cleanedVariables.map((variable) => {
+          cleanedVariables.forEach((variable) => {
             const completionItem = this.createCompletionItem(variable);
-
-            // Command to modify the import statement
-            this.excuteImportCommand(completionItem, document);
 
             completionItems.push(completionItem);
           });
         } else {
           const completionItem = this.createCompletionItem(variables);
-
-          // Command to modify the import statement
-          this.excuteImportCommand(completionItem, document);
 
           completionItems.push(completionItem);
         }

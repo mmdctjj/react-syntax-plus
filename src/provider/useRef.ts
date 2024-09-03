@@ -18,7 +18,7 @@ export const useRefProvider = vscode.languages.registerCompletionItemProvider(
       if (match) {
         const variableName = match[1];
 
-        const completionItemUtil = new CompletionItemUtil("useRef");
+        const completionItemUtil = new CompletionItemUtil("useRef", document);
 
         completionItemUtil.setMarkdownStringTemplate(
           `Generates a useRef hook for the variable \`${variableName}\`.\n\`\`\`javascript\nconst ${variableName} = useRef();\n\`\`\`\n`
@@ -28,8 +28,6 @@ export const useRefProvider = vscode.languages.registerCompletionItemProvider(
         );
         const completionItem =
           completionItemUtil.createCompletionItem(variableName);
-
-        completionItemUtil.excuteImportCommand(completionItem, document);
 
         return [completionItem];
       }

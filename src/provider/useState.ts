@@ -18,7 +18,7 @@ export const useStateProvider = vscode.languages.registerCompletionItemProvider(
       if (match) {
         const variableName = match[1];
 
-        const completionItemUtil = new CompletionItemUtil("useState");
+        const completionItemUtil = new CompletionItemUtil("useState", document);
 
         completionItemUtil.setMarkdownStringTemplate(
           `Generates a useState hook for the variable \`${variableName}\`.\n\`\`\`javascript\nconst [${variableName}, set${
@@ -32,8 +32,6 @@ export const useStateProvider = vscode.languages.registerCompletionItemProvider(
         );
         const completionItem =
           completionItemUtil.createCompletionItem(variableName);
-
-        completionItemUtil.excuteImportCommand(completionItem, document);
 
         return [completionItem];
       }

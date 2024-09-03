@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import { HOOKREG } from "../utils/constant";
+import { HOOKREG, PROPSREG } from "../utils/constant";
 
 export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
   ["javascriptreact", "typescriptreact"],
@@ -17,9 +17,9 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
         return undefined;
       }
 
-      const regexs = [HOOKREG];
+      const regexs = [HOOKREG, PROPSREG];
 
-      const completionItemUtil = new CompletionItemUtil("useMemo");
+      const completionItemUtil = new CompletionItemUtil("useMemo", document);
       completionItemUtil.setRegexs(regexs);
       completionItemUtil.setMarkdownStringTemplate(
         `This useMemo hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nconst $1 = useMemo(() => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`

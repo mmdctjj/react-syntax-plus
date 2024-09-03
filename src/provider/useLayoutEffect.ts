@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import { HOOKREG } from "../utils/constant";
+import { HOOKREG, PROPSREG } from "../utils/constant";
 
 export const useLayoutEffectProvider =
   vscode.languages.registerCompletionItemProvider(
@@ -18,9 +18,12 @@ export const useLayoutEffectProvider =
           return undefined;
         }
 
-        const regexs = [HOOKREG];
+        const regexs = [HOOKREG, PROPSREG];
 
-        const completionItemUtil = new CompletionItemUtil("useLayoutEffect");
+        const completionItemUtil = new CompletionItemUtil(
+          "useLayoutEffect",
+          document
+        );
         completionItemUtil.setRegexs(regexs);
         completionItemUtil.setMarkdownStringTemplate(
           `This useLayoutEffect hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nuseLayoutEffect(() => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`

@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import { HOOKREG } from "../utils/constant";
+import { HOOKREG, PROPSREG } from "../utils/constant";
 
 export const useEffectProvider =
   vscode.languages.registerCompletionItemProvider(
@@ -17,9 +17,12 @@ export const useEffectProvider =
           return undefined;
         }
 
-        const regexs = [HOOKREG];
+        const regexs = [HOOKREG, PROPSREG];
 
-        const completionItemUtil = new CompletionItemUtil("useEffect");
+        const completionItemUtil = new CompletionItemUtil(
+          "useEffect",
+          document
+        );
         completionItemUtil.setRegexs(regexs);
         completionItemUtil.setMarkdownStringTemplate(
           `\nThis useEffect hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nuseEffect(() => {\n  console.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
