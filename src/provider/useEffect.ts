@@ -1,6 +1,11 @@
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import { HOOKREG, PROPSREG } from "../utils/constant";
+import {
+  ARROWPROPSREG,
+  FUNPROPSREG,
+  HOOKREG,
+  PROPSREG,
+} from "../utils/constant";
 
 export const useEffectProvider =
   vscode.languages.registerCompletionItemProvider(
@@ -17,7 +22,7 @@ export const useEffectProvider =
           return undefined;
         }
 
-        const regexs = [HOOKREG, PROPSREG];
+        const regexs = [HOOKREG, PROPSREG, FUNPROPSREG, ARROWPROPSREG];
 
         const completionItemUtil = new CompletionItemUtil(
           "useEffect",

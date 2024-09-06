@@ -2,7 +2,7 @@
   "name": "react-syntax-plus",
   "displayName": "react-syntax-plus",
   "description": "This is a syntax snippets plugin for React designed to simplify and accelerate the development process.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "mmdctjj",
   "icon": "images/logo.png",
   "author": "mmdctjj",

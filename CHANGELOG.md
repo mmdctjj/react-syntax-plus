@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.3] - 2024-09-06
+
+### feat: 🚀 add props
+
 ## [0.0.2] - 2024-09-03
 
 ### feat: 🚀 add custom hook

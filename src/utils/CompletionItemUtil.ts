@@ -75,24 +75,19 @@ export class CompletionItemUtil {
             );
             completionItems.push(completionItem);
           }
-        }
-
-        // Check if it's an object or array destructuring
-        else if (variables.startsWith("{") || variables.startsWith("[")) {
+        } else {
+          // Check if it's an object or array destructuring
           // Remove braces or brackets, split by commas, and remove "..." from the start of any variable
           const cleanedVariables = variables
-            .slice(1, -1)
+            .replaceAll(/[{}\[\]]/g, "")
             .split(",")
-            .map((v) => v.trim().replace(/^\.{3}/, ""));
+            .map((v) => v.trim())
+            .map((v) => v.split("=")[0].replace(/^\.{3}/, ""));
           cleanedVariables.forEach((variable) => {
             const completionItem = this.createCompletionItem(variable);
 
             completionItems.push(completionItem);
           });
-        } else {
-          const completionItem = this.createCompletionItem(variables);
-
-          completionItems.push(completionItem);
         }
       }
     });

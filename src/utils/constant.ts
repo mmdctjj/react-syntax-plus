@@ -6,5 +6,7 @@ export const HOOKREG =
 export const PROPSREG = /u([celm])*props(\w*)/g;
 
 /** function props */
-export const FUNPROPSREG =
-  /(?:function\s+\w+\s*\(\s*(\w+)\s*(?::\s*\w+)?\s*\)|(?:\{([^}]+)\}\s*(?::\s*\w+)?\s*))/g;
+export const FUNPROPSREG = /\(\{([^}]+)\}\s*(?::\s*\w+)?\s*\)(?=\s*\{)/g;
+
+export const ARROWPROPSREG =
+  /const\s+\w+\s*=\s*\(\s*\{([^}]+)\}\s*(?::\s*\w+)?\s*\)\s*=>\s*\{/g;

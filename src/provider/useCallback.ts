@@ -2,7 +2,12 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { CompletionItemUtil } from "../utils/CompletionItemUtil";
-import { HOOKREG, PROPSREG } from "../utils/constant";
+import {
+  ARROWPROPSREG,
+  FUNPROPSREG,
+  HOOKREG,
+  PROPSREG,
+} from "../utils/constant";
 
 export const useCallbackProvider =
   vscode.languages.registerCompletionItemProvider(
@@ -18,7 +23,7 @@ export const useCallbackProvider =
           return undefined;
         }
 
-        const regexs = [HOOKREG, PROPSREG];
+        const regexs = [HOOKREG, PROPSREG, FUNPROPSREG, ARROWPROPSREG];
 
         const completionItemUtil = new CompletionItemUtil(
           "useCallback",
@@ -26,10 +31,10 @@ export const useCallbackProvider =
         );
         completionItemUtil.setRegexs(regexs);
         completionItemUtil.setMarkdownStringTemplate(
-          `\nThis useCallback hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nconst $1 = useCallback(() => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
+          `\nThis useCallback hook logs the value of \`#{}\` to the console whenever it changes.\n\`\`\`javascript\nconst $1 = useCallback((#{}) => {\nconsole.log("#{}", #{});\n}, [#{}]);\n\`\`\`\n`
         );
         completionItemUtil.setSnippetStringTemplate(
-          `const $1 = useCallback(() => {\n\tconsole.log("#{}", #{});$2\n}, [#{}]);`
+          `const $1 = useCallback((#{}$2) => {\n\tconsole.log("#{}", #{}$2);$3\n}, [#{}]);`
         );
         return completionItemUtil.getCompletionItems(document);
       },
