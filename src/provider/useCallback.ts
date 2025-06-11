@@ -19,7 +19,7 @@ export const useCallbackProvider =
       ) {
         const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
         // Check if the linePrefix ends with 'uc' to trigger 'useCallback' suggestions
-        if (!linePrefix.endsWith("uc")) {
+        if (!linePrefix.startsWith("uc")) {
           return undefined;
         }
 
@@ -39,5 +39,4 @@ export const useCallbackProvider =
         return completionItemUtil.getCompletionItems(document);
       },
     },
-    "c"
   );

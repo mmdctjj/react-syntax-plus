@@ -21,13 +21,11 @@ export const useStateProvider = vscode.languages.registerCompletionItemProvider(
         const completionItemUtil = new CompletionItemUtil("useState", document);
 
         completionItemUtil.setMarkdownStringTemplate(
-          `Generates a useState hook for the variable \`${variableName}\`.\n\`\`\`javascript\nconst [${variableName}, set${
-            variableName.charAt(0).toUpperCase() + variableName.slice(1)
+          `Generates a useState hook for the variable \`${variableName}\`.\n\`\`\`javascript\nconst [${variableName}, set${variableName.charAt(0).toUpperCase() + variableName.slice(1)
           }] = useState();\n\`\`\`\n`
         );
         completionItemUtil.setSnippetStringTemplate(
-          `const [${variableName}, set${
-            variableName.charAt(0).toUpperCase() + variableName.slice(1)
+          `const [${variableName}, set${variableName.charAt(0).toUpperCase() + variableName.slice(1)
           }] = useState($1);`
         );
         const completionItem =
@@ -39,5 +37,4 @@ export const useStateProvider = vscode.languages.registerCompletionItemProvider(
       return undefined;
     },
   },
-  "s" // 只在输入 "us" 后触发
 );

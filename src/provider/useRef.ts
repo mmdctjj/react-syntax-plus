@@ -35,5 +35,4 @@ export const useRefProvider = vscode.languages.registerCompletionItemProvider(
       return undefined;
     },
   },
-  "f"
 );

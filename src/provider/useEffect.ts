@@ -18,7 +18,7 @@ export const useEffectProvider =
         const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
 
         // Check if the linePrefix ends with 'ue' to trigger 'useEffect' suggestions
-        if (!linePrefix.endsWith("ue")) {
+        if (!linePrefix.startsWith("ue")) {
           return undefined;
         }
 
@@ -38,5 +38,4 @@ export const useEffectProvider =
         return completionItemUtil.getCompletionItems(document);
       },
     },
-    "e" // Trigger for 'ue' prefix
   );

@@ -18,7 +18,7 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
     ) {
       const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
       // Check if the linePrefix ends with 'um' to trigger 'useMemo' suggestions
-      if (!linePrefix.endsWith("um")) {
+      if (!linePrefix.startsWith("um")) {
         return undefined;
       }
 
@@ -35,5 +35,4 @@ export const useMemoProvider = vscode.languages.registerCompletionItemProvider(
       return completionItemUtil.getCompletionItems(document);
     },
   },
-  "m"
 );

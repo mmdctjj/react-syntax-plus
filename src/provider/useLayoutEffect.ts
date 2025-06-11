@@ -19,7 +19,7 @@ export const useLayoutEffectProvider =
       ) {
         const linePrefix = document.lineAt(position).text.trim().substr(0, 2);
         // Check if the linePrefix ends with 'ul' to trigger 'useLayoutEffect' suggestions
-        if (!linePrefix.endsWith("ul")) {
+        if (!linePrefix.startsWith("ul")) {
           return undefined;
         }
 
@@ -39,5 +39,4 @@ export const useLayoutEffectProvider =
         return completionItemUtil.getCompletionItems(document);
       },
     },
-    "l"
   );
